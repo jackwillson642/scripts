@@ -4,23 +4,27 @@ choice=$(echo -e 'HDMI\nLaptop\nHDMI Laptop\nLaptop HDMI' | rofi -dmenu -i -p 'H
 
 case $choice in
     Laptop)
-        notify-send 'Laptop' --urgency low
         ~/.screenlayout/screenlayout1.sh
+        ~/scripts/polybar_start.sh
+        notify-send 'Laptop' --urgency low
         ;;
 
     HDMI)
-        notify-send 'HDMI' --urgency low
         ~/.screenlayout/screenlayout2.sh
+        ~/scripts/polybar_start.sh
+        notify-send 'HDMI' --urgency low
         ;;
 
     HDMI\ Laptop)
-        notify-send 'HDMI Laptop' --urgency low
         ~/.screenlayout/screenlayout3.sh
+        ~/scripts/polybar_start.sh
+        notify-send 'HDMI Laptop' --urgency low
         ;;
 
     Laptop\ HDMI)
-        notify-send 'Laptop HDMI' --urgency low
         ~/.screenlayout/screenlayout4.sh
+        ~/scripts/polybar_start.sh
+        notify-send 'Laptop HDMI' --urgency low
         ;;
 
 esac

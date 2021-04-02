@@ -1,23 +1,22 @@
 #!/bin/bash
 
-choice=$(echo -e '1.Lock-Fancy\n2.Lock\n3.Lock-Suspend\n4.Shutdown\n5.Reboot\n6.Exit i3' | rofi -dmenu -p 'Which action do you wish to perform?' -i)
+### The depenedencies for using this menu script are:
+###   i3lock-color
+###   betterscreenlock
+
+choice=$(echo -e '1.Lock\n2.Suspend\n3.Shutdown\n4.Reboot\n5.Exit i3' | rofi -dmenu -p 'Which action do you wish to perform?' -i)
 case $choice in
-    1.Lock\-Fancy)
-        notify-send 'Locking fancy in 3sec' --urgency low
-        i3lock-fancy
-        ;;
-
-    2.Lock)
+    1.Lock)
         notify-send 'Lock normal' --urgency low
-        i3lock -ef -i ~/pictures/wallpapers/png/batman-joker.png -t
+        i3lock -e -B 10.0 -k --timesize=40 --timecolor=77ff99 --timestr="%H:%M:%S" --datesize=15 --datecolor=77ff99 --datestr="%a %d/%m/%y" --pass-volume-keys --pass-screen-keys --timepos=200:1000 --wrongtext=Access Denied --radius 20 --ring-width 8.0 --line-uses-inside --insidevercolor=77ff99 --insidecolor=00000000 --insidewrongcolor=ff0000 --ringvercolor=77ff99 --ringcolor=77ff99 --ringwrongcolor=ff0000 --keyhlcolor=00000000 --bshlcolor=00000000 --separatorcolor=77ff99 --indpos=340:988 --veriftext="" --wrongtext="" --noinputtext="" --no-modkeytext --greetersize=50 --greetertext="" --greeter-font=helvetica --greetercolor=77ff99
         ;;
 
-    3.Lock-Suspend)
+    2.Suspend)
         notify-send 'Lock normal and suspending' --urgency low
-        i3lock -ef -i ~/pictures/wallpapers/png/batman-joker.png -t && systemctl suspend
+        systemctl suspend
         ;;
 
-    4.Shutdown)
+    3.Shutdown)
         ans=$(echo -e 'No\nYes' | rofi -dmenu -p 'Are you sure' -i)
         if [ $ans = 'Yes' ]
         then
@@ -27,12 +26,12 @@ Run "shutdown -c" to cancel shutdown' --urgency low
         fi
         ;;
 
-    5.Reboot)
+    4.Reboot)
         notify-send 'Rebooting' --urgency low
         reboot
         ;;
 
-    6.Exit\ i3)
+    5.Exit\ i3)
         ans=$(echo -e 'No\nYes' | rofi -dmenu -p 'Are you sure' -i)
         if [ $ans = 'Yes' ]
         then
